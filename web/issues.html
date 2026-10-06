@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Issue 总结 · OpenSourceGuard</title>
+  <meta name="description" content="把一堆开放的 Issue 归纳成主题聚类，给出可能的原因与建议的修改。">
+  <link rel="stylesheet" href="styles.css">
+  <script src="icons.js" defer></script>
+</head>
+<body data-page="issues">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="nav-scrim" id="nav-scrim" aria-hidden="true"></div>
+
+  <aside class="sidebar" aria-label="主导航">
+    <div class="sidebar-brand">
+      <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"/></svg></span>
+      OpenSourceGuard
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a class="nav-item" href="index.html"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"/></svg>诊断与修复</a></li>
+        <li><a class="nav-item" href="report.html"><svg class="icon" aria-hidden="true"><use href="#i-activity"/></svg>体检报告</a></li>
+        <li><a class="nav-item" href="projects.html"><svg class="icon" aria-hidden="true"><use href="#i-folder-git-2"/></svg>项目与平台</a></li>
+        <li><a class="nav-item active" href="issues.html" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg>Issue 总结</a></li>
+        <li><a class="nav-item" href="publish.html"><svg class="icon" aria-hidden="true"><use href="#i-rocket"/></svg>发布与分享</a></li>
+        <li><a class="nav-item" href="arena.html"><svg class="icon" aria-hidden="true"><use href="#i-swords"/></svg>Agent 对比</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="sidebar-project">
+        <strong id="sidebar-project-name">本地工作区</strong>
+        <span id="sidebar-project-meta">等待连接项目</span>
+      </div>
+    </div>
+  </aside>
+
+  <div class="app-main">
+    <header class="topbar">
+      <div class="breadcrumb">
+        <button class="icon-button menu-toggle" id="nav-toggle" aria-label="打开导航菜单"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+        <span class="crumb-root">Workspace</span>
+        <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+        <strong>Issue 总结</strong>
+      </div>
+      <div class="topbar-actions">
+        <div class="connection-pill checking" id="connection" role="status">
+          <span class="dot" aria-hidden="true"></span><span class="connection-text">正在连接…</span>
+        </div>
+        <button class="icon-button" id="motion-toggle" aria-label="暂停装饰动画" title="暂停装饰动画" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-pause"/></svg></button>
+        <button class="avatar-button" aria-label="本地工作空间">OS</button>
+      </div>
+    </header>
+
+    <main class="page" id="main">
+      <div class="page-inner">
+        <header class="page-header">
+          <div>
+            <h1>Issue 总结</h1>
+            <p>Issue 是大家给你的项目提的问题和建议。这个页面把一堆 Issue 自动归类、提炼重点、排出处理顺序，让你一眼看清大家最关心什么、该先修哪个。</p>
+            <div class="guide-strip" aria-label="三步上手">
+              <span class="guide-step"><span class="guide-num">1</span>载入项目的 Issue</span>
+              <svg class="icon guide-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+              <span class="guide-step"><span class="guide-num">2</span>点「生成 Issue 总结」</span>
+              <svg class="icon guide-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+              <span class="guide-step"><span class="guide-num">3</span>按分类和顺序逐个处理</span>
+            </div>
+          </div>
+        </header>
+
+        <section class="card" aria-label="总结范围">
+          <div class="card-head">
+            <div>
+              <span class="card-title">总结范围</span>
+              <p class="card-sub">选择平台与仓库，或直接总结本机项目当前打开的 Issue。</p>
+            </div>
+          </div>
+          <div class="pr-form">
+            <label for="digest-platform">平台
+              <select id="digest-platform" class="input">
+                <option value="local" selected>本机项目</option>
+                <option value="github">GitHub</option>
+                <option value="gitee">Gitee</option>
+                <option value="gitlab">GitLab</option>
+              </select>
+            </label>
+            <label for="digest-repo">仓库（owner/name）
+              <input id="digest-repo" class="input" type="text" placeholder="例如 yourname/my-project" autocomplete="off">
+            </label>
+            <label for="digest-window">统计窗口（天）
+              <input id="digest-window" class="input" type="number" min="1" max="365" value="30">
+            </label>
+          </div>
+          <div class="pr-actions">
+            <button type="button" class="btn btn-primary btn-glow" id="digest-run">
+              <svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg><span>生成 Issue 总结</span>
+            </button>
+            <button type="button" class="btn btn-quiet" id="digest-schedule">
+              <svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span>定时自动运行</span>
+            </button>
+            <span class="form-status" id="digest-status" role="status" aria-live="polite"></span>
+          </div>
+        </section>
+
+        <section class="card" id="digest-result" aria-live="polite">
+          <div class="empty-state">
+            <div class="empty-visual">
+              <svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg>
+              <span class="check"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span>
+            </div>
+            <h3>还没有总结</h3>
+            <p>选择范围后点击「生成 Issue 总结」，Issue 会按主题聚类，并给出建议的处理顺序。</p>
+          </div>
+        </section>
+      </div>
+
+      <footer class="app-footer">
+        <span>OpenSourceGuard · 本地运行<span class="footer-dot">·</span>零第三方依赖<span class="footer-dot">·</span>Token 只留在本机</span>
+        <span id="footer-repo"></span>
+      </footer>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

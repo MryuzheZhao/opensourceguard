@@ -1,0 +1,100 @@
+[
+  {
+    "id": "csv-empty-crash",
+    "repo": "examples/buggy_csv",
+    "issue": "读取空 CSV 文件时 parse_csv 崩溃，应该返回空列表",
+    "category": "bug",
+    "language": "python",
+    "expected_path": "parser.py",
+    "expected_symbol": "parse_csv",
+    "expect_patch": true,
+    "expect_verified": true,
+    "expected_issue_type": "bug"
+  },
+  {
+    "id": "pagination-off-by-one",
+    "repo": "examples/pagination_bug",
+    "issue": "分页函数 paginate 第一页返回的是第二页的数据，应该从第 0 条开始切片",
+    "category": "bug",
+    "language": "python",
+    "expected_path": "pagination.py",
+    "expected_symbol": "paginate",
+    "expect_patch": false,
+    "expect_verified": false,
+    "expected_issue_type": "bug"
+  },
+  {
+    "id": "shell-injection",
+    "repo": "examples/security_demo",
+    "issue": "检查仓库是否存在命令注入和硬编码凭据漏洞",
+    "category": "security",
+    "language": "python",
+    "expected_path": "insecure.py",
+    "expected_rules": ["PY-SHELL", "PY-SECRET"],
+    "expect_patch": false,
+    "expect_verified": false,
+    "expected_issue_type": "security"
+  },
+  {
+    "id": "sql-injection",
+    "repo": "examples/sql_injection_demo",
+    "issue": "用户查询存在 SQL 注入漏洞，查询语句使用了字符串格式化拼接",
+    "category": "security",
+    "language": "python",
+    "expected_path": "queries.py",
+    "expected_symbol": "find_user_by_name",
+    "expected_rules": ["PY-SQL-FORMAT"],
+    "expect_patch": false,
+    "expect_verified": false,
+    "expected_issue_type": "security"
+  },
+  {
+    "id": "unsafe-deserialize",
+    "repo": "examples/deserialize_demo",
+    "issue": "反序列化不可信数据存在安全漏洞，同时口令使用了 MD5 哈希",
+    "category": "security",
+    "language": "python",
+    "expected_path": "session.py",
+    "expected_rules": ["PY-PICKLE", "PY-MD5"],
+    "expect_patch": false,
+    "expect_verified": false,
+    "expected_issue_type": "security"
+  },
+  {
+    "id": "polyglot-js-crash",
+    "repo": "examples/polyglot_demo",
+    "issue": "parseCsv 在传入空字符串时抛出异常，应该返回空数组",
+    "category": "bug",
+    "language": "javascript",
+    "expected_path": "report.js",
+    "expected_symbol": "parseCsv",
+    "expect_patch": false,
+    "expect_verified": false,
+    "expected_issue_type": "bug"
+  },
+  {
+    "id": "polyglot-java-sql",
+    "repo": "examples/polyglot_demo",
+    "issue": "Java 的 findByName 方法使用字符串拼接构造 SQL，存在注入漏洞",
+    "category": "security",
+    "language": "java",
+    "expected_path": "UserRepository.java",
+    "expected_symbol": "findByName",
+    "expected_rules": ["JAVA-SQL-CONCAT"],
+    "expect_patch": false,
+    "expect_verified": false,
+    "expected_issue_type": "security"
+  },
+  {
+    "id": "clean-negative-control",
+    "repo": "examples/clean_demo",
+    "issue": "检查这个工具模块是否存在安全问题",
+    "category": "negative",
+    "language": "python",
+    "expected_path": "utils.py",
+    "expect_no_findings": true,
+    "expect_patch": false,
+    "expect_verified": false,
+    "expected_issue_type": "security"
+  }
+]

@@ -1,0 +1,112 @@
+{
+  "cases": [
+    {
+      "id": "real-click-824",
+      "source": "github",
+      "repo": "pallets/click",
+      "number": 824,
+      "url": "https://github.com/pallets/click/issues/824",
+      "closed_at": "",
+      "title": "ValueError: I/O operation on closed file in testing",
+      "issue": "Bug: using click.testing.CliRunner to invoke a command can raise ValueError: I/O operation on closed file. Traceback (most recent call last): File 'click/testing.py', line 299, in invoke: output = out.getvalue() ValueError: I/O operation on closed file. The finally block in CliRunner.invoke in click/testing.py calls getvalue() on a stream that was already closed.",
+      "expected": {
+        "file": "src/click/testing.py",
+        "function": "invoke",
+        "line": 299
+      },
+      "labels": [
+        "bug"
+      ]
+    },
+    {
+      "id": "real-flask-2735",
+      "source": "github",
+      "repo": "pallets/flask",
+      "number": 2735,
+      "url": "https://github.com/pallets/flask/issues/2735",
+      "closed_at": "",
+      "title": "flask.abort() behavioral change in debug mode",
+      "issue": "Bug: calling flask.abort(400) inside a view behaves differently with debug=True; the HTTP exception is re-raised instead of returning an error response. Traceback (most recent call last): File 'flask/app.py', line 2287, in wsgi_app: response = self.handle_exception(e). File 'flask/app.py', line 1733, in handle_exception: server_error = self.ensure_sync(self.handle_user_exception)(e). File 'flask/app.py', line 1791, in dispatch_request: return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args). The abort / error handling flow lives in flask/app.py.",
+      "expected": {
+        "file": "src/flask/app.py",
+        "function": "handle_exception",
+        "line": 1733
+      },
+      "labels": [
+        "bug"
+      ]
+    },
+    {
+      "id": "real-werkzeug-2364",
+      "source": "github",
+      "repo": "pallets/werkzeug",
+      "number": 2364,
+      "url": "https://github.com/pallets/werkzeug/issues/2364",
+      "closed_at": "",
+      "title": "ResponseCacheControl.s_maxage raises error when set to an int",
+      "issue": "Bug: assigning response.cache_control.s_maxage = 60 raises TypeError: argument of type int is not iterable. Traceback (most recent call last): File 'werkzeug/datastructures.py', line 2039, in _set_cache_value. File 'werkzeug/datastructures.py', line 1958, in cache_control_property setter lambda. TypeError: argument of type int is not iterable. The _CacheControl._set_cache_value in werkzeug datastructures cache_control should coerce int values to str.",
+      "expected": {
+        "file": "src/werkzeug/datastructures/cache_control.py",
+        "function": "_set_cache_value",
+        "line": 0
+      },
+      "labels": [
+        "bug"
+      ]
+    },
+    {
+      "id": "real-werkzeug-2021",
+      "source": "github",
+      "repo": "pallets/werkzeug",
+      "number": 2021,
+      "url": "https://github.com/pallets/werkzeug/issues/2021",
+      "closed_at": "",
+      "title": "DechunkedInput.read returns more than what was asked for",
+      "issue": "Bug: werkzeug.serving.DechunkedInput.read(n) can return more than n bytes when consuming a chunked request body, violating the wsgi.input_stream contract from PEP 3333. The chunked buffering logic in DechunkedInput.read / readinto in werkzeug/serving.py does not respect the requested size; see serving.py line 105.",
+      "expected": {
+        "file": "src/werkzeug/serving.py",
+        "function": "readinto",
+        "line": 105
+      },
+      "labels": [
+        "bug"
+      ]
+    },
+    {
+      "id": "real-flask-2118",
+      "source": "github",
+      "repo": "pallets/flask",
+      "number": 2118,
+      "url": "https://github.com/pallets/flask/issues/2118",
+      "closed_at": "",
+      "title": "config.from_pyfile crashes on Python 3",
+      "issue": "Bug: app.config.from_pyfile('settings.cfg') crashes with UnicodeDecodeError: ascii codec can't decode byte on Python 3 when the config file contains non-ASCII text. flask/config.py from_pyfile opens the file with the default locale encoding and then runs exec(compile(config_file.read(), filename, 'exec'), d.__dict__). It should open the file as UTF-8.",
+      "expected": {
+        "file": "src/flask/config.py",
+        "function": "from_pyfile",
+        "line": 0
+      },
+      "labels": [
+        "bug"
+      ]
+    },
+    {
+      "id": "real-jinja-1400",
+      "source": "github",
+      "repo": "pallets/jinja",
+      "number": 1400,
+      "url": "https://github.com/pallets/jinja/issues/1400",
+      "closed_at": "",
+      "title": "Markup.__init__ causes error",
+      "issue": "Bug: rendering a template value raises TypeError coming from the Markup subclass defined in jinja2/utils.py (see jinja2/utils.py line 843). Markup.__init__ / escape in jinja2/utils.py fails for objects that do not implement __html__ and are not plain strings.",
+      "expected": {
+        "file": "src/jinja2/utils.py",
+        "function": "",
+        "line": 843
+      },
+      "labels": [
+        "bug"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opensourceguard"
+version = "0.1.0"
+description = "AI-assisted, evidence-based issue localization and repair workflow for open-source Python projects"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+opensourceguard = "opensourceguard.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["opensourceguard*"]
+

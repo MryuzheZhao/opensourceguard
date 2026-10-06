@@ -1,0 +1,168 @@
+{
+  "repo": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\outputs\\opensourceguard",
+  "score": 75,
+  "grade": "C",
+  "grade_label": "合格",
+  "grade_note": "基础具备，但有明显可改进项。",
+  "dimensions": [
+    {
+      "key": "security",
+      "label": "安全",
+      "weight": 30,
+      "score": 85,
+      "measured": true,
+      "signals": [
+        "扫描命中规则：JS-INNERHTML",
+        "涉及 CWE：CWE-79",
+        "另有 18 个问题位于测试夹具/示例目录，已排除在评分之外（这些目录通常刻意保留可检出的问题）"
+      ],
+      "deductions": [
+        {
+          "reason": "3 个中风险安全问题",
+          "points": 15
+        }
+      ],
+      "actions": [
+        "处理中风险问题，或对确认无害的行添加 `# osg:ignore` 并写明原因。"
+      ]
+    },
+    {
+      "key": "compliance",
+      "label": "合规",
+      "weight": 20,
+      "score": 60,
+      "measured": true,
+      "signals": [
+        "项目许可证：未声明",
+        "依赖 1 个，已解析许可证 0 个，未知 1 个",
+        "依赖清单：pyproject.toml, space/requirements.txt"
+      ],
+      "deductions": [
+        {
+          "reason": "没有 LICENSE 文件，也未在清单中声明许可证",
+          "points": 40
+        }
+      ],
+      "actions": [
+        "添加 LICENSE 文件；个人开源项目通常选 MIT（最宽松）或 Apache-2.0（含专利条款）。"
+      ]
+    },
+    {
+      "key": "testing",
+      "label": "测试",
+      "weight": 20,
+      "score": 80,
+      "measured": true,
+      "signals": [
+        "源码文件 37 个，测试文件 17 个",
+        "CI 配置：未配置"
+      ],
+      "deductions": [
+        {
+          "reason": "没有配置 CI，测试不会自动运行",
+          "points": 20
+        }
+      ],
+      "actions": [
+        "添加 .github/workflows/ci.yml，让每次推送自动运行测试。"
+      ]
+    },
+    {
+      "key": "documentation",
+      "label": "文档",
+      "weight": 15,
+      "score": 70,
+      "measured": true,
+      "signals": [
+        "README.md：253 行"
+      ],
+      "deductions": [
+        {
+          "reason": "缺少 CONTRIBUTING.md（贡献指南）",
+          "points": 15
+        },
+        {
+          "reason": "缺少 CODE_OF_CONDUCT.md（行为准则）",
+          "points": 5
+        },
+        {
+          "reason": "缺少 SECURITY.md（安全披露政策）",
+          "points": 5
+        },
+        {
+          "reason": "缺少 CHANGELOG.md（变更日志）",
+          "points": 5
+        }
+      ],
+      "actions": [
+        "文档完善；建议补充架构说明或使用截图。"
+      ]
+    },
+    {
+      "key": "maintainability",
+      "label": "可维护性",
+      "weight": 15,
+      "score": 72,
+      "measured": true,
+      "signals": [
+        "源码文件 37 个，约 6781 行",
+        "函数/方法 471 个",
+        "语言分布：Python 48、JavaScript 2、Go 1、Java 1、Rust 1"
+      ],
+      "deductions": [
+        {
+          "reason": "1 个文件超过 800 行（最大 866 行）",
+          "points": 8
+        },
+        {
+          "reason": "3 个函数超过 120 行",
+          "points": 15
+        },
+        {
+          "reason": "涉及 6 种语言，维护成本较高",
+          "points": 5
+        }
+      ],
+      "actions": [
+        "拆分最大的文件：web/app.js（866 行）。",
+        "重构过长函数：eval/browser_acceptance.py:16 的 main。"
+      ]
+    }
+  ],
+  "stats": {
+    "source_files": 54,
+    "symbols": 582,
+    "languages": {
+      "python": 48,
+      "javascript": 2,
+      "go": 1,
+      "java": 1,
+      "rust": 1,
+      "shell": 1
+    },
+    "security": {
+      "high": 0,
+      "medium": 3,
+      "low": 0
+    },
+    "security_in_fixtures": 18,
+    "dependencies": 1,
+    "license": "未声明",
+    "measured_weight": 100
+  },
+  "blocking_issues": [
+    "合规：LICENSE — 仓库没有 LICENSE 文件，也没有在清单中声明许可证。"
+  ],
+  "quick_wins": [
+    "[合规] 添加 LICENSE 文件；个人开源项目通常选 MIT（最宽松）或 Apache-2.0（含专利条款）。",
+    "[文档] 文档完善；建议补充架构说明或使用截图。",
+    "[可维护性] 拆分最大的文件：web/app.js（866 行）。",
+    "[测试] 添加 .github/workflows/ci.yml，让每次推送自动运行测试。",
+    "[安全] 处理中风险问题，或对确认无害的行添加 `# osg:ignore` 并写明原因。"
+  ],
+  "warnings": [
+    "评分只反映可观测的仓库信号（安全规则、依赖清单、文档文件、测试文件、文件规模），不评估代码正确性、架构质量或运行时可靠性。",
+    "非 Python 语言使用启发式解析，行数与符号统计可能存在偏差。",
+    "examples/、tests/ 等夹具目录中的 18 个问题未计入安全评分；这些目录通常刻意保留可检出的问题作为演示或测试输入。"
+  ]
+}

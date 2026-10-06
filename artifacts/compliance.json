@@ -1,0 +1,151 @@
+{
+  "repo": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\outputs\\opensourceguard\\examples\\polyglot_demo",
+  "project_license": "MIT",
+  "license_source": "package.json",
+  "license_confidence": "medium",
+  "manifests": [
+    "requirements.txt",
+    "package.json"
+  ],
+  "dependencies": [
+    {
+      "name": "requests",
+      "version": "==2.31.0",
+      "ecosystem": "pypi",
+      "scope": "runtime",
+      "manifest": "requirements.txt",
+      "license": "Apache-2.0",
+      "license_source": "curated table"
+    },
+    {
+      "name": "pyyaml",
+      "version": "==6.0.1",
+      "ecosystem": "pypi",
+      "scope": "runtime",
+      "manifest": "requirements.txt",
+      "license": "MIT",
+      "license_source": "curated table"
+    },
+    {
+      "name": "paramiko",
+      "version": "==3.4.0",
+      "ecosystem": "pypi",
+      "scope": "runtime",
+      "manifest": "requirements.txt",
+      "license": "LGPL-2.1",
+      "license_source": "curated table"
+    },
+    {
+      "name": "lodash",
+      "version": "^4.17.21",
+      "ecosystem": "npm",
+      "scope": "runtime",
+      "manifest": "package.json",
+      "license": "MIT",
+      "license_source": "curated table"
+    },
+    {
+      "name": "left-pad",
+      "version": "^1.3.0",
+      "ecosystem": "npm",
+      "scope": "runtime",
+      "manifest": "package.json",
+      "license": "WTFPL",
+      "license_source": "curated table"
+    },
+    {
+      "name": "jest",
+      "version": "^29.7.0",
+      "ecosystem": "npm",
+      "scope": "dev",
+      "manifest": "package.json",
+      "license": "MIT",
+      "license_source": "curated table"
+    }
+  ],
+  "findings": [
+    {
+      "kind": "license",
+      "severity": "medium",
+      "subject": "paramiko",
+      "message": "依赖为 LGPL-2.1（弱 Copyleft）。动态链接通常可接受，但静态链接或修改其源码后，需要按 LGPL-2.1 的条款开放相应部分。",
+      "recommendation": "保持动态依赖、不修改其源码；如需修改请单独开源该部分。",
+      "source": "requirements.txt",
+      "detected_license": "LGPL-2.1"
+    },
+    {
+      "kind": "license",
+      "severity": "low",
+      "subject": "left-pad",
+      "message": "依赖使用 WTFPL，部分企业合规流程不接受该许可。",
+      "recommendation": "若面向企业用户分发，建议替换为 MIT/Apache-2.0 等主流许可。",
+      "source": "package.json",
+      "detected_license": "WTFPL"
+    },
+    {
+      "kind": "dependency",
+      "severity": "medium",
+      "subject": "left-pad",
+      "message": "该包曾因从 npm 撤回导致大规模构建失败，功能可用 String.prototype.padStart 替代。",
+      "recommendation": "评估是否可以移除或替换该依赖，并锁定版本。",
+      "source": "package.json",
+      "detected_license": "WTFPL"
+    },
+    {
+      "kind": "file",
+      "severity": "low",
+      "subject": "CONTRIBUTING.md",
+      "message": "缺少贡献指南，新贡献者不知道如何参与。",
+      "recommendation": "添加 CONTRIBUTING.md，说明开发环境、提交规范和评审流程。",
+      "source": "repository root",
+      "detected_license": ""
+    },
+    {
+      "kind": "file",
+      "severity": "low",
+      "subject": "CODE_OF_CONDUCT.md",
+      "message": "缺少行为准则，社区协作缺少共同约定。",
+      "recommendation": "可直接采用 Contributor Covenant。",
+      "source": "repository root",
+      "detected_license": ""
+    },
+    {
+      "kind": "file",
+      "severity": "low",
+      "subject": "SECURITY.md",
+      "message": "缺少安全披露政策，漏洞报告没有明确渠道。",
+      "recommendation": "添加 SECURITY.md，说明私下报告渠道和响应时限。",
+      "source": "repository root",
+      "detected_license": ""
+    },
+    {
+      "kind": "file",
+      "severity": "medium",
+      "subject": ".gitignore",
+      "message": "缺少 .gitignore，容易误提交虚拟环境、缓存或凭据。",
+      "recommendation": "添加 .gitignore，至少排除 .env、虚拟环境和构建产物。",
+      "source": "repository root",
+      "detected_license": ""
+    }
+  ],
+  "summary": {
+    "dependency_count": 6,
+    "manifest_count": 2,
+    "ecosystems": {
+      "pypi": 3,
+      "npm": 3
+    },
+    "severity": {
+      "high": 0,
+      "medium": 3,
+      "low": 4,
+      "info": 0
+    },
+    "unknown_licenses": 0,
+    "resolved_licenses": 6,
+    "blocking": false
+  },
+  "warnings": [
+    "本审计基于清单声明与内置对照表，属于快速初筛，不构成法律意见。"
+  ]
+}

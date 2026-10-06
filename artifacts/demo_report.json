@@ -1,0 +1,94 @@
+{
+  "repo": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\outputs\\opensourceguard\\examples\\buggy_csv",
+  "issue": {
+    "issue": "读取空 CSV 文件时 parse_csv 崩溃，应该返回空列表",
+    "issue_type": "bug",
+    "severity": "high",
+    "keywords": [
+      "读取空",
+      "csv",
+      "文件时",
+      "parse_csv",
+      "应该返回空列表"
+    ],
+    "expected_behavior": "返回空列表",
+    "actual_behavior": "读取空 CSV 文件时 parse_csv 崩溃，"
+  },
+  "evidence": [
+    {
+      "path": "parser.py",
+      "start_line": 1,
+      "end_line": 6,
+      "reason": "符号 parse_csv 与 Issue 关键词和代码内容匹配",
+      "score": 1.0
+    },
+    {
+      "path": "parser.py",
+      "start_line": 1,
+      "end_line": 6,
+      "reason": "符号 <module> 与 Issue 关键词和代码内容匹配",
+      "score": 0.88
+    },
+    {
+      "path": "test_parser.py",
+      "start_line": 1,
+      "end_line": 11,
+      "reason": "符号 <module> 与 Issue 关键词和代码内容匹配，同时存在相关测试线索",
+      "score": 0.76
+    },
+    {
+      "path": "test_parser.py",
+      "start_line": 5,
+      "end_line": 10,
+      "reason": "符号 ParserTests 与 Issue 关键词和代码内容匹配，同时存在相关测试线索",
+      "score": 0.64
+    },
+    {
+      "path": "test_parser.py",
+      "start_line": 6,
+      "end_line": 7,
+      "reason": "符号 test_regular_input 与 Issue 关键词和代码内容匹配，同时存在相关测试线索",
+      "score": 0.52
+    }
+  ],
+  "reproduction_test": "import unittest\nfrom parser import parse_csv\n\n\nclass ReproductionTests(unittest.TestCase):\n    def test_empty_csv_returns_empty_list(self):\n        self.assertEqual(parse_csv(\"\"), [])\n",
+  "patch_plan": "先补充最小复现测试；确认原始代码能够重现问题后，在最相关函数内做最小修改；保留兼容行为，运行全部测试和安全扫描，再由维护者审核。",
+  "patch": "--- a/parser.py\n+++ b/parser.py\n@@ -3,4 +3,4 @@\n     rows = []\n     for line in text.splitlines():\n         rows.append([cell.strip() for cell in line.split(\",\")])\n-    return rows[0] if len(rows) <= 1 else rows\n+    return [] if not rows else (rows[0] if len(rows) == 1 else rows)\n",
+  "tests": [
+    {
+      "command": [
+        "skip",
+        "unittest",
+        "discover"
+      ],
+      "return_code": -1,
+      "passed": false,
+      "stdout": "",
+      "stderr": "当前只做静态分析，尚未执行测试。",
+      "stage": "baseline",
+      "timed_out": false,
+      "tests_run": 0,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "infrastructure_error": true
+    }
+  ],
+  "next_actions": [
+    "人工确认代码证据与 Issue 是否对应。",
+    "把复现测试模板改成真实输入，并确认原始版本先失败。",
+    "在隔离分支生成补丁，运行复现测试、全量测试和安全扫描。",
+    "通过 GitHub/Gitee Draft PR 提交给维护者审核。"
+  ],
+  "security_findings": [],
+  "model_used": "heuristic",
+  "warnings": [
+    "当前报告不会修改目标仓库；补丁只会在临时副本中校验。",
+    "当前请求未启用代码执行；如需验证，请在受控环境中选择 local 或 docker 模式。"
+  ],
+  "verification_status": "skipped",
+  "execution_mode": "skip",
+  "snapshot_sha256": "9bcd3173504e9797daa90cf5c301e72453343574ed6147e5dc9627e5d3b7f352",
+  "patch_source": "heuristic",
+  "security_findings_after": []
+}

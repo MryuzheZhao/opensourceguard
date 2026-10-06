@@ -1,0 +1,193 @@
+{
+  "summary": {
+    "generated_at": "2026-10-05T23:30:59.301876+00:00",
+    "cases_scored": 6,
+    "cases_skipped": 0,
+    "top1_localisation": 0.6667,
+    "top3_localisation": 0.6667,
+    "top5_localisation": 0.8333,
+    "function_hit": 0.1667,
+    "by_repo": {
+      "pallets/click": {
+        "cases": 1,
+        "top1_rate": 1.0,
+        "top3_rate": 1.0
+      },
+      "pallets/flask": {
+        "cases": 2,
+        "top1_rate": 1.0,
+        "top3_rate": 1.0
+      },
+      "pallets/werkzeug": {
+        "cases": 2,
+        "top1_rate": 0.5,
+        "top3_rate": 0.5
+      },
+      "pallets/jinja": {
+        "cases": 1,
+        "top1_rate": 0.0,
+        "top3_rate": 0.0
+      }
+    },
+    "elapsed_seconds": 3.8,
+    "method": "Each case is a real closed bug report from a public repository. The expected file is the traceback frame inside that repository, quoted by the reporter, not annotated by this project. The tool is run against a fresh clone of the target repo and never sees the fix commit."
+  },
+  "cases": [
+    {
+      "id": "real-click-824",
+      "repo": "pallets/click",
+      "number": 824,
+      "url": "https://github.com/pallets/click/issues/824",
+      "title": "ValueError: I/O operation on closed file in testing",
+      "expected_file": "src/click/testing.py",
+      "expected_function": "invoke",
+      "top1_localisation": true,
+      "top3_localisation": true,
+      "top5_localisation": true,
+      "function_hit": true,
+      "evidence_paths": [
+        "src/click/testing.py",
+        "src/click/testing.py",
+        "src/click/testing.py",
+        "src/click/_winconsole.py",
+        "src/click/testing.py"
+      ],
+      "model_used": "heuristic",
+      "verification_status": "skipped",
+      "issue_type": "bug",
+      "security_findings": 4,
+      "duration_seconds": 0.7,
+      "scored_file": "src/click/testing.py"
+    },
+    {
+      "id": "real-flask-2735",
+      "repo": "pallets/flask",
+      "number": 2735,
+      "url": "https://github.com/pallets/flask/issues/2735",
+      "title": "flask.abort() behavioral change in debug mode",
+      "expected_file": "src/flask/app.py",
+      "expected_function": "handle_exception",
+      "top1_localisation": true,
+      "top3_localisation": true,
+      "top5_localisation": true,
+      "function_hit": false,
+      "evidence_paths": [
+        "src/flask/app.py",
+        "src/flask/cli.py",
+        "src/flask/helpers.py",
+        "src/flask/sansio/app.py",
+        "src/flask/sansio/app.py"
+      ],
+      "model_used": "heuristic",
+      "verification_status": "skipped",
+      "issue_type": "bug",
+      "security_findings": 19,
+      "duration_seconds": 0.45,
+      "scored_file": "src/flask/app.py"
+    },
+    {
+      "id": "real-werkzeug-2364",
+      "repo": "pallets/werkzeug",
+      "number": 2364,
+      "url": "https://github.com/pallets/werkzeug/issues/2364",
+      "title": "ResponseCacheControl.s_maxage raises error when set to an int",
+      "expected_file": "src/werkzeug/datastructures/cache_control.py",
+      "expected_function": "_set_cache_value",
+      "top1_localisation": false,
+      "top3_localisation": false,
+      "top5_localisation": true,
+      "function_hit": false,
+      "evidence_paths": [
+        "src/werkzeug/sansio/response.py",
+        "src/werkzeug/utils.py",
+        "src/werkzeug/middleware/lint.py",
+        "src/werkzeug/sansio/response.py",
+        "src/werkzeug/datastructures/cache_control.py"
+      ],
+      "model_used": "heuristic",
+      "verification_status": "skipped",
+      "issue_type": "bug",
+      "security_findings": 44,
+      "duration_seconds": 0.86,
+      "scored_file": "src/werkzeug/datastructures/cache_control.py"
+    },
+    {
+      "id": "real-werkzeug-2021",
+      "repo": "pallets/werkzeug",
+      "number": 2021,
+      "url": "https://github.com/pallets/werkzeug/issues/2021",
+      "title": "DechunkedInput.read returns more than what was asked for",
+      "expected_file": "src/werkzeug/serving.py",
+      "expected_function": "readinto",
+      "top1_localisation": true,
+      "top3_localisation": true,
+      "top5_localisation": true,
+      "function_hit": false,
+      "evidence_paths": [
+        "src/werkzeug/serving.py",
+        "src/werkzeug/wrappers/request.py",
+        "src/werkzeug/serving.py",
+        "src/werkzeug/serving.py",
+        "src/werkzeug/serving.py"
+      ],
+      "model_used": "heuristic",
+      "verification_status": "skipped",
+      "issue_type": "bug",
+      "security_findings": 44,
+      "duration_seconds": 0.86,
+      "scored_file": "src/werkzeug/serving.py"
+    },
+    {
+      "id": "real-flask-2118",
+      "repo": "pallets/flask",
+      "number": 2118,
+      "url": "https://github.com/pallets/flask/issues/2118",
+      "title": "config.from_pyfile crashes on Python 3",
+      "expected_file": "src/flask/config.py",
+      "expected_function": "from_pyfile",
+      "top1_localisation": true,
+      "top3_localisation": true,
+      "top5_localisation": true,
+      "function_hit": false,
+      "evidence_paths": [
+        "src/flask/config.py",
+        "src/flask/app.py",
+        "src/flask/sansio/app.py",
+        "src/flask/config.py",
+        "src/flask/helpers.py"
+      ],
+      "model_used": "heuristic",
+      "verification_status": "skipped",
+      "issue_type": "bug",
+      "security_findings": 19,
+      "duration_seconds": 0.43,
+      "scored_file": "src/flask/config.py"
+    },
+    {
+      "id": "real-jinja-1400",
+      "repo": "pallets/jinja",
+      "number": 1400,
+      "url": "https://github.com/pallets/jinja/issues/1400",
+      "title": "Markup.__init__ causes error",
+      "expected_file": "src/jinja2/utils.py",
+      "expected_function": "",
+      "top1_localisation": false,
+      "top3_localisation": false,
+      "top5_localisation": false,
+      "function_hit": false,
+      "evidence_paths": [
+        "src/jinja2/ext.py",
+        "src/jinja2/sandbox.py",
+        "src/jinja2/environment.py",
+        "src/jinja2/environment.py",
+        "src/jinja2/compiler.py"
+      ],
+      "model_used": "heuristic",
+      "verification_status": "skipped",
+      "issue_type": "bug",
+      "security_findings": 14,
+      "duration_seconds": 0.51,
+      "scored_file": "src/jinja2/utils.py"
+    }
+  ]
+}

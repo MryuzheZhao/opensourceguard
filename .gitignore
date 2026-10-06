@@ -1,0 +1,24 @@
+# Competition materials (contain personal info, not for public repo)
+参赛材料/
+
+# Local environment & secrets
+.env.local
+_env_dump.json
+
+# Caches & backups
+.benchmark-cache/
+.backup-20261003/
+__pycache__/
+*.py[cod]
+
+# Runtime working files
+work_arena.json
+work_onboarding.json
+
+# Temp & tooling
+.tmp_*
+node_modules/
+
+# OS files
+Thumbs.db
+.DS_Store

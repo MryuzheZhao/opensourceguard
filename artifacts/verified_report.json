@@ -1,0 +1,111 @@
+{
+  "repo": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\outputs\\opensourceguard\\examples\\buggy_csv",
+  "issue": {
+    "issue": "读取空 CSV 文件时 parse_csv 崩溃，应该返回空列表",
+    "issue_type": "bug",
+    "severity": "high",
+    "keywords": [
+      "读取空",
+      "csv",
+      "文件时",
+      "parse_csv",
+      "应该返回空列表"
+    ],
+    "expected_behavior": "返回空列表",
+    "actual_behavior": "读取空 CSV 文件时 parse_csv 崩溃，"
+  },
+  "evidence": [
+    {
+      "path": "parser.py",
+      "start_line": 1,
+      "end_line": 6,
+      "reason": "符号 parse_csv 与 Issue 关键词和代码内容匹配",
+      "score": 1.0
+    },
+    {
+      "path": "parser.py",
+      "start_line": 1,
+      "end_line": 6,
+      "reason": "符号 <module> 与 Issue 关键词和代码内容匹配",
+      "score": 0.88
+    },
+    {
+      "path": "test_parser.py",
+      "start_line": 1,
+      "end_line": 11,
+      "reason": "符号 <module> 与 Issue 关键词和代码内容匹配，同时存在相关测试线索",
+      "score": 0.76
+    },
+    {
+      "path": "test_parser.py",
+      "start_line": 5,
+      "end_line": 10,
+      "reason": "符号 ParserTests 与 Issue 关键词和代码内容匹配，同时存在相关测试线索",
+      "score": 0.64
+    },
+    {
+      "path": "test_parser.py",
+      "start_line": 6,
+      "end_line": 7,
+      "reason": "符号 test_regular_input 与 Issue 关键词和代码内容匹配，同时存在相关测试线索",
+      "score": 0.52
+    }
+  ],
+  "reproduction_test": "from parser import parse_csv\n\n\ndef test_empty_csv_returns_empty_list():\n    assert parse_csv(\"\") == []\n",
+  "patch_plan": "先补充最小复现测试；确认原始代码能够重现问题后，在最相关函数内做最小修改；保留兼容行为，运行全部测试和安全扫描，再由维护者审核。",
+  "patch": "--- a/parser.py\n+++ b/parser.py\n@@ -3,4 +3,4 @@\n     rows = []\n     for line in text.splitlines():\n         rows.append([cell.strip() for cell in line.split(\",\")])\n-    return rows[0] if len(rows) <= 1 else rows\n+    return [] if not rows else (rows[0] if len(rows) == 1 else rows)\n",
+  "tests": [
+    {
+      "command": [
+        "local",
+        "unittest",
+        "test_osg_reproduction.py"
+      ],
+      "return_code": 1,
+      "passed": false,
+      "stdout": "Traceback (most recent call last):\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\outputs\\opensourceguard\\opensourceguard\\_test_worker.py\", line 5, in <module>\r\n    import json\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\work\\python\\cpython-3.12.14-windows-x86_64-none\\Lib\\json\\__init__.py\", line 106, in <module>\r\n    from .decoder import JSONDecoder, JSONDecodeError\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\work\\python\\cpython-3.12.14-windows-x86_64-none\\Lib\\json\\decoder.py\", line 3, in <module>\r\n    import re\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\work\\python\\cpython-3.12.14-windows-x86_64-none\\Lib\\re\\__init__.py\", line 124, in <module>\r\n    import enum\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\work\\python\\cpython-3.12.14-windows-x86_64-none\\Lib\\enum.py\", line 3, in <module>\r\n    from types import MappingProxyType, DynamicClassAttribute\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\outputs\\opensourceguard\\opensourceguard\\types.py\", line 3, in <module>\r\n    from dataclasses import asdict, dataclass, field\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\work\\python\\cpython-3.12.14-windows-x86_64-none\\Lib\\dataclasses.py\", line 3, in <module>\r\n    import copy\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\work\\python\\cpython-3.12.14-windows-x86_64-none\\Lib\\copy.py\", line 52, in <module>\r\n    import weakref\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\work\\python\\cpython-3.12.14-windows-x86_64-none\\Lib\\weakref.py\", line 22, in <module>\r\n    from _weakrefset import WeakSet, _IterationGuard\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\work\\python\\cpython-3.12.14-windows-x86_64-none\\Lib\\_weakrefset.py\", line 6, in <module>\r\n    from types import GenericAlias\r\nImportError: cannot import name 'GenericAlias' from partially initialized module 'types' (most likely due to a circular import) (C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\outputs\\opensourceguard\\opensourceguard\\types.py)\r\n",
+      "stderr": "",
+      "stage": "baseline",
+      "timed_out": false,
+      "tests_run": 0,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "infrastructure_error": true
+    },
+    {
+      "command": [
+        "local",
+        "unittest",
+        "test_osg_reproduction.py"
+      ],
+      "return_code": 1,
+      "passed": false,
+      "stdout": "Traceback (most recent call last):\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\outputs\\opensourceguard\\opensourceguard\\_test_worker.py\", line 5, in <module>\r\n    import json\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\work\\python\\cpython-3.12.14-windows-x86_64-none\\Lib\\json\\__init__.py\", line 106, in <module>\r\n    from .decoder import JSONDecoder, JSONDecodeError\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\work\\python\\cpython-3.12.14-windows-x86_64-none\\Lib\\json\\decoder.py\", line 3, in <module>\r\n    import re\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\work\\python\\cpython-3.12.14-windows-x86_64-none\\Lib\\re\\__init__.py\", line 124, in <module>\r\n    import enum\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\work\\python\\cpython-3.12.14-windows-x86_64-none\\Lib\\enum.py\", line 3, in <module>\r\n    from types import MappingProxyType, DynamicClassAttribute\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\outputs\\opensourceguard\\opensourceguard\\types.py\", line 3, in <module>\r\n    from dataclasses import asdict, dataclass, field\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\work\\python\\cpython-3.12.14-windows-x86_64-none\\Lib\\dataclasses.py\", line 3, in <module>\r\n    import copy\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\work\\python\\cpython-3.12.14-windows-x86_64-none\\Lib\\copy.py\", line 52, in <module>\r\n    import weakref\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\work\\python\\cpython-3.12.14-windows-x86_64-none\\Lib\\weakref.py\", line 22, in <module>\r\n    from _weakrefset import WeakSet, _IterationGuard\r\n  File \"C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\work\\python\\cpython-3.12.14-windows-x86_64-none\\Lib\\_weakrefset.py\", line 6, in <module>\r\n    from types import GenericAlias\r\nImportError: cannot import name 'GenericAlias' from partially initialized module 'types' (most likely due to a circular import) (C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\outputs\\opensourceguard\\opensourceguard\\types.py)\r\n",
+      "stderr": "",
+      "stage": "candidate_patch",
+      "timed_out": false,
+      "tests_run": 0,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "infrastructure_error": true
+    }
+  ],
+  "next_actions": [
+    "人工确认代码证据与 Issue 是否对应。",
+    "把复现测试模板改成真实输入，并确认原始版本先失败。",
+    "在隔离分支生成补丁，运行复现测试、全量测试和安全扫描。",
+    "通过 GitHub/Gitee Draft PR 提交给维护者审核。"
+  ],
+  "security_findings": [],
+  "model_used": "heuristic",
+  "warnings": [
+    "当前报告不会修改目标仓库；补丁只会在临时副本中校验。"
+  ],
+  "verification_status": "infrastructure_error",
+  "execution_mode": "local",
+  "snapshot_sha256": "9bcd3173504e9797daa90cf5c301e72453343574ed6147e5dc9627e5d3b7f352",
+  "patch_source": "heuristic",
+  "security_findings_after": []
+}

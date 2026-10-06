@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>项目与平台 · OpenSourceGuard</title>
+  <meta name="description" content="连接 GitHub / Gitee / GitLab，发现本机项目，浏览 Issue 并生成可审核方案。">
+  <link rel="stylesheet" href="styles.css">
+  <script src="icons.js" defer></script>
+</head>
+<body data-page="projects">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="nav-scrim" id="nav-scrim" aria-hidden="true"></div>
+
+  <aside class="sidebar" aria-label="主导航">
+    <div class="sidebar-brand">
+      <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"/></svg></span>
+      OpenSourceGuard
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a class="nav-item" href="index.html"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"/></svg>诊断与修复</a></li>
+        <li><a class="nav-item" href="report.html"><svg class="icon" aria-hidden="true"><use href="#i-activity"/></svg>体检报告</a></li>
+        <li><a class="nav-item active" href="projects.html" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-folder-git-2"/></svg>项目与平台</a></li>
+        <li><a class="nav-item" href="issues.html"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg>Issue 总结</a></li>
+        <li><a class="nav-item" href="publish.html"><svg class="icon" aria-hidden="true"><use href="#i-rocket"/></svg>发布与分享</a></li>
+        <li><a class="nav-item" href="arena.html"><svg class="icon" aria-hidden="true"><use href="#i-swords"/></svg>Agent 对比</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="sidebar-project">
+        <strong id="sidebar-project-name">本地工作区</strong>
+        <span id="sidebar-project-meta">等待连接项目</span>
+      </div>
+    </div>
+  </aside>
+
+  <div class="app-main">
+    <header class="topbar">
+      <div class="breadcrumb">
+        <button class="icon-button menu-toggle" id="nav-toggle" aria-label="打开导航菜单"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+        <span class="crumb-root">Workspace</span>
+        <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+        <strong>项目与平台</strong>
+      </div>
+      <div class="topbar-actions">
+        <div class="connection-pill checking" id="connection" role="status">
+          <span class="dot" aria-hidden="true"></span><span class="connection-text">正在连接…</span>
+        </div>
+        <button class="icon-button" id="motion-toggle" aria-label="暂停装饰动画" title="暂停装饰动画" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-pause"/></svg></button>
+        <button class="avatar-button" aria-label="本地工作空间">OS</button>
+      </div>
+    </header>
+
+    <main class="page" id="main">
+      <div class="page-inner">
+        <header class="page-header">
+          <div>
+            <h1>项目与平台</h1>
+            <p>这里管理你要分析的开源项目：连接代码托管平台、发现本机项目、浏览项目里的 Issue 并生成“待你审核”的修复方案。平台 Token 只保存在你自己的电脑上。</p>
+            <div class="guide-strip" aria-label="三步上手">
+              <span class="guide-step"><span class="guide-num">1</span>连接平台或点「帮我找」</span>
+              <svg class="icon guide-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+              <span class="guide-step"><span class="guide-num">2</span>浏览项目的 Issue 列表</span>
+              <svg class="icon guide-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+              <span class="guide-step"><span class="guide-num">3</span>生成待审核的修复方案</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="grid grid-sidebar-left">
+          <div class="grid" style="align-content:start">
+            <section class="card" aria-label="平台连接">
+              <div class="card-head">
+                <div>
+                  <span class="card-title">平台连接</span>
+                  <p class="card-sub">每个平台粘贴一个 Token 即可连接，Token 只保存在本机。</p>
+                </div>
+              </div>
+              <div id="connections-list">
+                <div class="empty-state compact">
+                  <div class="empty-visual"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></div>
+                  <h3>正在读取连接状态</h3>
+                  <p>正在检查本地服务。</p>
+                </div>
+              </div>
+              <p class="form-status" id="connections-status" role="status" aria-live="polite"></p>
+            </section>
+
+            <section class="card" aria-label="本机项目发现">
+              <div class="card-head">
+                <div>
+                  <span class="card-title">本机项目发现</span>
+                  <p class="card-sub">用一句话描述你想找的项目，扫描本机常见代码目录。</p>
+                </div>
+              </div>
+              <div class="field">
+                <label class="field-label" for="finder-query">想找什么样的项目？</label>
+                <input id="finder-query" class="input" type="text" placeholder="例如：我写的一个 Python 命令行工具" autocomplete="off">
+              </div>
+              <div class="pr-actions">
+                <button type="button" class="btn btn-primary" id="finder-run">
+                  <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><span>帮我找</span>
+                </button>
+                <span class="form-status" id="finder-status" role="status" aria-live="polite"></span>
+              </div>
+              <div id="finder-results"></div>
+            </section>
+          </div>
+
+          <div class="grid" style="align-content:start">
+            <section class="card" aria-label="项目列表">
+              <div class="card-head">
+                <div>
+                  <span class="card-title">项目列表</span>
+                  <p class="card-sub">排序方式：<span id="typesafe-status">本地规则</span></p>
+                </div>
+                <div class="pr-actions">
+                  <label class="sr-only" for="project-platform">平台筛选</label>
+                  <select id="project-platform" class="input" style="width:auto">
+                    <option value="">全部平台</option>
+                    <option value="github">GitHub</option>
+                    <option value="gitee">Gitee</option>
+                    <option value="gitlab">GitLab</option>
+                    <option value="local">本机项目</option>
+                  </select>
+                  <button type="button" class="btn btn-quiet btn-sm" id="project-refresh">
+                    <svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg><span>刷新</span>
+                  </button>
+                </div>
+              </div>
+              <details class="advanced">
+                <summary>按兴趣排序（可选）</summary>
+                <div class="field" style="margin-bottom:10px">
+                  <label class="field-label" for="project-interests">感兴趣的方向</label>
+                  <input id="project-interests" class="input" type="text" placeholder="例如：CLI 工具、数据可视化" autocomplete="off">
+                </div>
+                <div class="field" style="margin-bottom:10px">
+                  <label class="field-label" for="project-avoid">想避开的方向</label>
+                  <input id="project-avoid" class="input" type="text" placeholder="例如：大型框架、重前端项目" autocomplete="off">
+                </div>
+                <div class="pr-actions">
+                  <button type="button" class="btn btn-quiet btn-sm" id="project-recommend">
+                    <svg class="icon" aria-hidden="true"><use href="#i-wand"/></svg><span>为我排序</span>
+                  </button>
+                  <span class="form-status" id="project-recommend-status" role="status" aria-live="polite"></span>
+                </div>
+              </details>
+              <div class="project-list" id="project-list">
+                <div class="empty-state compact">
+                  <div class="empty-visual"><svg class="icon" aria-hidden="true"><use href="#i-folder"/></svg></div>
+                  <h3>正在读取项目</h3>
+                  <p>正在检查已连接的平台。</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="card" aria-label="项目详情">
+              <div class="card-head">
+                <div>
+                  <span class="card-title" id="selected-project-title">未选择项目</span>
+                  <p class="card-sub"><span class="pill" id="selected-project-badge">从左侧选择</span></p>
+                </div>
+              </div>
+              <div class="issue-list" id="issue-list">
+                <div class="empty-state compact">
+                  <div class="empty-visual"><svg class="icon" aria-hidden="true"><use href="#i-issue"/></svg></div>
+                  <h3>等待选择项目</h3>
+                  <p>选择项目后，这里会列出开放的 Issue。</p>
+                </div>
+              </div>
+              <div id="project-agent-result" hidden></div>
+              <p class="form-status" id="project-action-status" role="status" aria-live="polite"></p>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <footer class="app-footer">
+        <span>OpenSourceGuard · 本地运行<span class="footer-dot">·</span>零第三方依赖<span class="footer-dot">·</span>Token 只留在本机</span>
+        <span id="footer-repo"></span>
+      </footer>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

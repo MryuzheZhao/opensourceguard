@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>发布与分享 · OpenSourceGuard</title>
+  <meta name="description" content="生成首次开源发布路线、README 草稿与个人网站卡片，或安全上传到魔搭社区。">
+  <link rel="stylesheet" href="styles.css">
+  <script src="icons.js" defer></script>
+</head>
+<body data-page="publish">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="nav-scrim" id="nav-scrim" aria-hidden="true"></div>
+
+  <aside class="sidebar" aria-label="主导航">
+    <div class="sidebar-brand">
+      <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"/></svg></span>
+      OpenSourceGuard
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a class="nav-item" href="index.html"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"/></svg>诊断与修复</a></li>
+        <li><a class="nav-item" href="report.html"><svg class="icon" aria-hidden="true"><use href="#i-activity"/></svg>体检报告</a></li>
+        <li><a class="nav-item" href="projects.html"><svg class="icon" aria-hidden="true"><use href="#i-folder-git-2"/></svg>项目与平台</a></li>
+        <li><a class="nav-item" href="issues.html"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg>Issue 总结</a></li>
+        <li><a class="nav-item active" href="publish.html" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-rocket"/></svg>发布与分享</a></li>
+        <li><a class="nav-item" href="arena.html"><svg class="icon" aria-hidden="true"><use href="#i-swords"/></svg>Agent 对比</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="sidebar-project">
+        <strong id="sidebar-project-name">本地工作区</strong>
+        <span id="sidebar-project-meta">等待连接项目</span>
+      </div>
+    </div>
+  </aside>
+
+  <div class="app-main">
+    <header class="topbar">
+      <div class="breadcrumb">
+        <button class="icon-button menu-toggle" id="nav-toggle" aria-label="打开导航菜单"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+        <span class="crumb-root">Workspace</span>
+        <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+        <strong>发布与分享</strong>
+      </div>
+      <div class="topbar-actions">
+        <div class="connection-pill checking" id="connection" role="status">
+          <span class="dot" aria-hidden="true"></span><span class="connection-text">正在连接…</span>
+        </div>
+        <button class="icon-button" id="motion-toggle" aria-label="暂停装饰动画" title="暂停装饰动画" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-pause"/></svg></button>
+        <button class="avatar-button" aria-label="本地工作空间">OS</button>
+      </div>
+    </header>
+
+    <main class="page" id="main">
+      <div class="page-inner">
+        <header class="page-header">
+          <div>
+            <h1>发布与分享</h1>
+            <p>第一次把项目开源？这里帮你生成一份“发布指南”：要补哪些资料、README 怎么写、展示卡片长什么样；准备好了还能安全地分享到魔搭社区。</p>
+            <div class="guide-strip" aria-label="三步上手">
+              <span class="guide-step"><span class="guide-num">1</span>点「生成发布指南」</span>
+              <svg class="icon guide-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+              <span class="guide-step"><span class="guide-num">2</span>按清单完善项目资料</span>
+              <svg class="icon guide-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+              <span class="guide-step"><span class="guide-num">3</span>准备好了就一键分享</span>
+            </div>
+          </div>
+        </header>
+
+        <section class="card" aria-label="首次开源发布">
+          <div class="card-head">
+            <div>
+              <span class="card-title">首次开源发布指南</span>
+              <p class="card-sub">检查 Git 身份、README、许可证与 .gitignore，生成一步步的发布路线。</p>
+            </div>
+          </div>
+          <form id="onboarding-form">
+            <div class="pr-form">
+              <label for="onboard-user">平台用户名
+                <input id="onboard-user" class="input" type="text" placeholder="例如 yourname" autocomplete="off">
+              </label>
+              <label for="onboard-platform">平台
+                <select id="onboard-platform" class="input">
+                  <option value="github" selected>GitHub</option>
+                  <option value="gitee">Gitee</option>
+                  <option value="gitlab">GitLab</option>
+                </select>
+              </label>
+              <label for="onboard-name">项目名（可选）
+                <input id="onboard-name" class="input" type="text" placeholder="留空则使用当前目录名" autocomplete="off">
+              </label>
+              <label for="onboard-home">主页（可选）
+                <input id="onboard-home" class="input" type="text" placeholder="例如 https://yourname.dev" autocomplete="off">
+              </label>
+            </div>
+            <div class="field" style="margin-top:10px">
+              <label class="field-label" for="onboard-description">一句话介绍（可选）</label>
+              <input id="onboard-description" class="input" type="text" placeholder="例如：一个本地优先的 Issue 诊断工具" autocomplete="off">
+            </div>
+            <div class="pr-actions">
+              <button type="submit" class="btn btn-primary btn-glow" id="onboard-run">
+                <svg class="icon" aria-hidden="true"><use href="#i-rocket"/></svg><span>生成发布指南</span>
+              </button>
+              <span class="form-status" id="onboard-status" role="status" aria-live="polite"></span>
+            </div>
+          </form>
+          <div id="onboard-result"></div>
+        </section>
+
+        <section class="card" aria-label="魔搭社区上传">
+          <div class="card-head">
+            <div>
+              <span class="card-title">分享到魔搭社区</span>
+              <p class="card-sub">生成上传清单并检查疑似凭据文件；确认后才会执行真实上传。</p>
+            </div>
+            <span id="modelscope-status"></span>
+          </div>
+          <form id="modelscope-form">
+            <div class="pr-form">
+              <label for="modelscope-id">仓库 ID
+                <input id="modelscope-id" class="input" type="text" placeholder="例如 yourname/my-project" autocomplete="off">
+              </label>
+              <label for="modelscope-kind">仓库类型
+                <select id="modelscope-kind" class="input">
+                  <option value="space" selected>创空间</option>
+                  <option value="dataset">数据集仓库</option>
+                  <option value="model">模型仓库</option>
+                </select>
+              </label>
+              <label for="modelscope-visibility">可见性
+                <select id="modelscope-visibility" class="input">
+                  <option value="private" selected>私有</option>
+                  <option value="public">公开</option>
+                </select>
+              </label>
+            </div>
+            <div class="field" style="margin-top:10px">
+              <label class="field-label" for="modelscope-description">简介（可选）</label>
+              <input id="modelscope-description" class="input" type="text" placeholder="简单介绍这个项目" autocomplete="off">
+            </div>
+            <div class="pr-actions">
+              <button type="submit" class="btn btn-quiet" id="modelscope-prepare">
+                <svg class="icon" aria-hidden="true"><use href="#i-list-checks"/></svg><span>生成上传清单</span>
+              </button>
+              <span class="form-status" id="modelscope-form-status" role="status" aria-live="polite"></span>
+            </div>
+          </form>
+          <div id="modelscope-result"></div>
+        </section>
+      </div>
+
+      <footer class="app-footer">
+        <span>OpenSourceGuard · 本地运行<span class="footer-dot">·</span>零第三方依赖<span class="footer-dot">·</span>Token 只留在本机</span>
+        <span id="footer-repo"></span>
+      </footer>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

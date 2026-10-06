@@ -1,0 +1,381 @@
+{
+  "generated_at": "2026-09-28T19:02:47+08:00",
+  "execute_mode": "skip",
+  "python_version": "3.12.6",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "summary": {
+    "cases": 8,
+    "top1_localisation": 1.0,
+    "top3_localisation": 1.0,
+    "symbol_accuracy": 0.8,
+    "security_recall": 1.0,
+    "issue_type_accuracy": 0.875,
+    "false_positives_on_clean_repo": 0,
+    "patch_rate": 1.0,
+    "verified_rate": 0.0,
+    "total_duration_seconds": 0.019,
+    "by_category": {
+      "bug": {
+        "cases": 3,
+        "top1_localisation": 1.0
+      },
+      "security": {
+        "cases": 4,
+        "top1_localisation": 1.0
+      },
+      "negative": {
+        "cases": 1,
+        "top1_localisation": 1.0
+      }
+    },
+    "by_language": {
+      "python": {
+        "cases": 6,
+        "top1_localisation": 1.0
+      },
+      "javascript": {
+        "cases": 1,
+        "top1_localisation": 1.0
+      },
+      "java": {
+        "cases": 1,
+        "top1_localisation": 1.0
+      }
+    },
+    "counts": {
+      "localisation_cases": 8,
+      "symbol_cases": 5,
+      "security_cases": 4,
+      "negative_cases": 1,
+      "expected_rules": 6,
+      "matched_rules": 6
+    }
+  },
+  "regressions": [],
+  "rows": [
+    {
+      "id": "csv-empty-crash",
+      "category": "bug",
+      "language": "python",
+      "issue": "读取空 CSV 文件时 parse_csv 崩溃，应该返回空列表",
+      "expected_path": "parser.py",
+      "top_path": "parser.py",
+      "evidence_paths": [
+        "parser.py",
+        "parser.py"
+      ],
+      "expected_symbol": "parse_csv",
+      "top_symbol": "parse_csv",
+      "top1_localisation": true,
+      "top3_localisation": true,
+      "symbol_hit": true,
+      "symbol_checked": true,
+      "expected_rules": [],
+      "fired_rules": [],
+      "matched_rules": [],
+      "unexpected_findings": [],
+      "issue_type": "bug",
+      "expected_issue_type": "bug",
+      "issue_type_hit": true,
+      "has_patch": true,
+      "expect_patch": true,
+      "verification_status": "skipped",
+      "verified": false,
+      "expect_verified": true,
+      "evidence_confidence": "parsed",
+      "primary_language": "python",
+      "model_used": "heuristic",
+      "duration_seconds": 0.002
+    },
+    {
+      "id": "pagination-off-by-one",
+      "category": "bug",
+      "language": "python",
+      "issue": "分页函数 paginate 第一页返回的是第二页的数据，应该从第 0 条开始切片",
+      "expected_path": "pagination.py",
+      "top_path": "pagination.py",
+      "evidence_paths": [
+        "pagination.py",
+        "pagination.py",
+        "pagination.py"
+      ],
+      "expected_symbol": "paginate",
+      "top_symbol": "paginate",
+      "top1_localisation": true,
+      "top3_localisation": true,
+      "symbol_hit": true,
+      "symbol_checked": true,
+      "expected_rules": [],
+      "fired_rules": [],
+      "matched_rules": [],
+      "unexpected_findings": [],
+      "issue_type": "bug",
+      "expected_issue_type": "bug",
+      "issue_type_hit": true,
+      "has_patch": false,
+      "expect_patch": false,
+      "verification_status": "skipped",
+      "verified": false,
+      "expect_verified": false,
+      "evidence_confidence": "parsed",
+      "primary_language": "python",
+      "model_used": "heuristic",
+      "duration_seconds": 0.003
+    },
+    {
+      "id": "shell-injection",
+      "category": "security",
+      "language": "python",
+      "issue": "检查仓库是否存在命令注入和硬编码凭据漏洞",
+      "expected_path": "insecure.py",
+      "top_path": "insecure.py",
+      "evidence_paths": [
+        "insecure.py",
+        "insecure.py"
+      ],
+      "expected_symbol": null,
+      "top_symbol": "run_user_command",
+      "top1_localisation": true,
+      "top3_localisation": true,
+      "symbol_hit": false,
+      "symbol_checked": false,
+      "expected_rules": [
+        "PY-SHELL",
+        "PY-SECRET"
+      ],
+      "fired_rules": [
+        "PY-SECRET",
+        "PY-SHELL"
+      ],
+      "matched_rules": [
+        "PY-SHELL",
+        "PY-SECRET"
+      ],
+      "unexpected_findings": [],
+      "issue_type": "security",
+      "expected_issue_type": "security",
+      "issue_type_hit": true,
+      "has_patch": false,
+      "expect_patch": false,
+      "verification_status": "skipped",
+      "verified": false,
+      "expect_verified": false,
+      "evidence_confidence": "parsed",
+      "primary_language": "python",
+      "model_used": "heuristic",
+      "duration_seconds": 0.001
+    },
+    {
+      "id": "sql-injection",
+      "category": "security",
+      "language": "python",
+      "issue": "用户查询存在 SQL 注入漏洞，查询语句使用了字符串格式化拼接",
+      "expected_path": "queries.py",
+      "top_path": "queries.py",
+      "evidence_paths": [
+        "queries.py",
+        "queries.py",
+        "queries.py"
+      ],
+      "expected_symbol": "find_user_by_name",
+      "top_symbol": "connect",
+      "top1_localisation": true,
+      "top3_localisation": true,
+      "symbol_hit": false,
+      "symbol_checked": true,
+      "expected_rules": [
+        "PY-SQL-FORMAT"
+      ],
+      "fired_rules": [
+        "PY-SQL-FORMAT"
+      ],
+      "matched_rules": [
+        "PY-SQL-FORMAT"
+      ],
+      "unexpected_findings": [],
+      "issue_type": "security",
+      "expected_issue_type": "security",
+      "issue_type_hit": true,
+      "has_patch": false,
+      "expect_patch": false,
+      "verification_status": "skipped",
+      "verified": false,
+      "expect_verified": false,
+      "evidence_confidence": "parsed",
+      "primary_language": "python",
+      "model_used": "heuristic",
+      "duration_seconds": 0.002
+    },
+    {
+      "id": "unsafe-deserialize",
+      "category": "security",
+      "language": "python",
+      "issue": "反序列化不可信数据存在安全漏洞，同时口令使用了 MD5 哈希",
+      "expected_path": "session.py",
+      "top_path": "session.py",
+      "evidence_paths": [
+        "session.py",
+        "session.py",
+        "session.py"
+      ],
+      "expected_symbol": null,
+      "top_symbol": "password_digest",
+      "top1_localisation": true,
+      "top3_localisation": true,
+      "symbol_hit": false,
+      "symbol_checked": false,
+      "expected_rules": [
+        "PY-PICKLE",
+        "PY-MD5"
+      ],
+      "fired_rules": [
+        "PY-MD5",
+        "PY-PICKLE"
+      ],
+      "matched_rules": [
+        "PY-PICKLE",
+        "PY-MD5"
+      ],
+      "unexpected_findings": [],
+      "issue_type": "security",
+      "expected_issue_type": "security",
+      "issue_type_hit": true,
+      "has_patch": false,
+      "expect_patch": false,
+      "verification_status": "skipped",
+      "verified": false,
+      "expect_verified": false,
+      "evidence_confidence": "parsed",
+      "primary_language": "python",
+      "model_used": "heuristic",
+      "duration_seconds": 0.002
+    },
+    {
+      "id": "polyglot-js-crash",
+      "category": "bug",
+      "language": "javascript",
+      "issue": "parseCsv 在传入空字符串时抛出异常，应该返回空数组",
+      "expected_path": "report.js",
+      "top_path": "report.js",
+      "evidence_paths": [
+        "report.js",
+        "report.js",
+        "report.js"
+      ],
+      "expected_symbol": "parseCsv",
+      "top_symbol": "parseCsv",
+      "top1_localisation": true,
+      "top3_localisation": true,
+      "symbol_hit": true,
+      "symbol_checked": true,
+      "expected_rules": [],
+      "fired_rules": [
+        "GO-SQL-SPRINTF",
+        "GO-WEAK-HASH",
+        "JAVA-RUNTIME-EXEC",
+        "JAVA-SQL-CONCAT",
+        "JS-INNERHTML",
+        "JS-MATH-RANDOM-TOKEN",
+        "RS-COMMAND",
+        "RS-UNWRAP"
+      ],
+      "matched_rules": [],
+      "unexpected_findings": [],
+      "issue_type": "bug",
+      "expected_issue_type": "bug",
+      "issue_type_hit": true,
+      "has_patch": false,
+      "expect_patch": false,
+      "verification_status": "skipped",
+      "verified": false,
+      "expect_verified": false,
+      "evidence_confidence": "heuristic",
+      "primary_language": "go",
+      "model_used": "heuristic",
+      "duration_seconds": 0.004
+    },
+    {
+      "id": "polyglot-java-sql",
+      "category": "security",
+      "language": "java",
+      "issue": "Java 的 findByName 方法使用字符串拼接构造 SQL，存在注入漏洞",
+      "expected_path": "UserRepository.java",
+      "top_path": "UserRepository.java",
+      "evidence_paths": [
+        "UserRepository.java",
+        "UserRepository.java",
+        "report.js"
+      ],
+      "expected_symbol": "findByName",
+      "top_symbol": "findByName",
+      "top1_localisation": true,
+      "top3_localisation": true,
+      "symbol_hit": true,
+      "symbol_checked": true,
+      "expected_rules": [
+        "JAVA-SQL-CONCAT"
+      ],
+      "fired_rules": [
+        "GO-SQL-SPRINTF",
+        "GO-WEAK-HASH",
+        "JAVA-RUNTIME-EXEC",
+        "JAVA-SQL-CONCAT",
+        "JS-INNERHTML",
+        "JS-MATH-RANDOM-TOKEN",
+        "RS-COMMAND",
+        "RS-UNWRAP"
+      ],
+      "matched_rules": [
+        "JAVA-SQL-CONCAT"
+      ],
+      "unexpected_findings": [],
+      "issue_type": "security",
+      "expected_issue_type": "security",
+      "issue_type_hit": true,
+      "has_patch": false,
+      "expect_patch": false,
+      "verification_status": "skipped",
+      "verified": false,
+      "expect_verified": false,
+      "evidence_confidence": "heuristic",
+      "primary_language": "go",
+      "model_used": "heuristic",
+      "duration_seconds": 0.003
+    },
+    {
+      "id": "clean-negative-control",
+      "category": "negative",
+      "language": "python",
+      "issue": "检查这个工具模块是否存在安全问题",
+      "expected_path": "utils.py",
+      "top_path": "utils.py",
+      "evidence_paths": [
+        "utils.py",
+        "utils.py",
+        "utils.py"
+      ],
+      "expected_symbol": null,
+      "top_symbol": "content_digest",
+      "top1_localisation": true,
+      "top3_localisation": true,
+      "symbol_hit": false,
+      "symbol_checked": false,
+      "expected_rules": [],
+      "fired_rules": [],
+      "matched_rules": [],
+      "unexpected_findings": [],
+      "issue_type": "bug",
+      "expected_issue_type": "security",
+      "issue_type_hit": false,
+      "has_patch": false,
+      "expect_patch": false,
+      "verification_status": "skipped",
+      "verified": false,
+      "expect_verified": false,
+      "evidence_confidence": "parsed",
+      "primary_language": "python",
+      "model_used": "heuristic",
+      "duration_seconds": 0.002
+    }
+  ]
+}

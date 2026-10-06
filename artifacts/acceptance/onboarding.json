@@ -1,0 +1,92 @@
+{
+  "project": {
+    "path": "C:\\Users\\Administrator\\Documents\\Codex\\2026-09-20\\wo\\outputs\\opensourceguard\\examples\\buggy_csv",
+    "name": "buggy_csv",
+    "file_count": 2,
+    "languages": {
+      "Python": 2
+    },
+    "primary_language": "Python",
+    "has_git": false,
+    "has_readme": false,
+    "readme_file": "",
+    "has_license": false,
+    "license_file": "",
+    "has_ci": false,
+    "remote": "",
+    "branch": ""
+  },
+  "repository": {
+    "slug": "acceptance-agent",
+    "platform": "github",
+    "clone_url": "https://github.com/builder/acceptance-agent.git",
+    "web_url": "https://github.com/builder/acceptance-agent"
+  },
+  "needs_username": false,
+  "checklist": [
+    {
+      "id": "identity",
+      "title": "配置 Git 身份",
+      "why": "提交记录需要显示作者，团队协作和作品证明都依赖这一步。",
+      "commands": [
+        "git config --global user.name \"你的姓名\"",
+        "git config --global user.email \"你的邮箱\"",
+        "git config --global --list"
+      ]
+    },
+    {
+      "id": "local",
+      "title": "整理本地仓库",
+      "why": "先用 .gitignore 排除密钥、缓存、虚拟环境和构建产物。 暂存前检查 git diff；首次推送前补全 README 和许可证，并安装项目依赖。",
+      "commands": [
+        "git init",
+        "git status",
+        "git add .",
+        "git commit -m \"chore: initial open-source release\"",
+        "git branch -M main"
+      ]
+    },
+    {
+      "id": "remote",
+      "title": "上传到 Github",
+      "why": "先在平台创建同名空仓库，再绑定远程地址并推送。",
+      "commands": [
+        "git remote add origin https://github.com/builder/acceptance-agent.git",
+        "git remote -v",
+        "git push -u origin main"
+      ]
+    },
+    {
+      "id": "quality",
+      "title": "让别人敢于使用",
+      "why": "README、许可证、测试和 CI 是开源项目的信任基础。",
+      "commands": [
+        "补充 README.md、LICENSE 和 CONTRIBUTING.md",
+        "添加最小可运行示例和测试命令",
+        "配置 CI：每次提交自动运行测试"
+      ]
+    },
+    {
+      "id": "portfolio",
+      "title": "放进个人网站",
+      "why": "把仓库变成可展示的项目案例，说明问题、效果和你的贡献。",
+      "commands": [
+        "复制下面生成的项目卡片到个人网站项目列表",
+        "增加 Demo、截图、评测指标和线上链接",
+        "在简历中写清你的角色、技术和可量化结果"
+      ]
+    }
+  ],
+  "common_mistakes": [
+    "不要把 API Key、.env、模型凭据或个人隐私文件提交到仓库。",
+    "不要直接上传 node_modules、.venv、__pycache__ 和大模型权重。",
+    "第一次推送遇到分支名不一致时，先执行 git branch -M main。",
+    "README 要让陌生人从零开始跑通，而不是只介绍项目名称。"
+  ],
+  "readme_template": "# acceptance-agent\n\n<img src=x onerror=\"window.injected=true\">\n\n## 解决什么问题\n\n用一两句话说明用户遇到的痛点，以及这个项目带来的结果。\n\n## 快速开始\n\n~~~text\n在这里写安装、配置和最小运行示例。\n~~~\n\n## 功能\n\n- 功能一：说明实际效果\n- 功能二：说明适用场景\n\n## 贡献\n\n欢迎提交 Issue 和 Pull Request。请先阅读 CONTRIBUTING.md，并在提交前运行测试。\n\n## 许可证\n\n建议选择一份明确的开源许可证，例如 Apache-2.0 或 MIT。\n",
+  "website_card": {
+    "markdown": "- [acceptance-agent](https://github.com/builder/acceptance-agent)：<img src=x onerror=\"window.injected=true\">",
+    "html": "<article class=\"project-card\"><h3><a href=\"https://github.com/builder/acceptance-agent\">acceptance-agent</a></h3><p>&lt;img src=x onerror=&quot;window.injected=true&quot;&gt;</p></article>"
+  },
+  "next_step": "完成 Git 身份配置后，执行本页第二组命令；不要把密钥写进命令或仓库。"
+}

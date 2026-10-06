@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "time": "2026-09-22T13:09:37.960237+00:00",
+  "checks": [
+    "local login, demo workspace, assets and service connection",
+    "project center loads demo project/issues and generates an Agent plan",
+    "logout, password validation path, and remembered local session",
+    "model connection test keeps offline mode when no credentials are configured",
+    "static analysis is marked not executed",
+    "local reproduction, full suite, clipboard, JSON and Markdown export",
+    "publish guide, placeholder warning, escaped website card and export",
+    "arena baseline comparison, export, mode switching, invalid input, zero for empty responses",
+    "motion pause persists and never hides routed content",
+    "all routes at 390px and 820px without horizontal overflow",
+    "network failure has a visible error and retry remains available"
+  ]
+}
